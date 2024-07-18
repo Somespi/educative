@@ -19,16 +19,17 @@
 }
 
 .message-bot {
-    background-color: rgba(0,0,0,0.1);
-}
-.message-user {
     background-color: rgba(0,0,0,0.05);
 }
+.message-user {
+    background-color: rgba(0,0,0,0.005);
+}
 .message p {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     line-height: 1rem;
     padding-bottom: 0.5rem;
     margin-left: 0.7rem;
+    margin-right: 0.2rem;
     color: white;
 }
 

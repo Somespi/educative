@@ -2,18 +2,23 @@ from flask import Flask, render_template, request
 from requests import post
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
 from string import punctuation
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
+nltk.download('stopwords')
 
-inquerier = TfidfVectorizer()
-infos = open("./data.txt").readlines()
-X = inquerier.fit_transform(infos)
 
-api_key = os.getenv('GEMINI_API')
-
+def preprocess(text):
+    stemmer = PorterStemmer()
+    text = text.lower()
+    text = [stemmer.stem(word) for word in text.split()]
+    text = [word for word in text if word not in stopwords.words('english') and word not in punctuation]
+    return ' '.join(text)
 
 def gemini_prompt(prompt):
     url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" + api_key
@@ -31,12 +36,6 @@ def gemini_prompt(prompt):
     if feedback.status_code != 200:
         print(feedback.json())
     return feedback.json()['candidates'][0]['content']['parts'][0]['text']
-
-def generate_response(message):
-    inquery = inquerier.transform([''.join([c for c in message if c not in punctuation])])
-    similarity = cosine_similarity(inquery, X)[0]
-    return infos[max(range(len(similarity)), key=lambda i: similarity[i])]
-
 
 def lesson_generator(topic, grade_level, notes):
     solution = gemini_prompt(
@@ -58,7 +57,15 @@ def lesson_generator(topic, grade_level, notes):
 
 
 
+api_key = os.getenv('GEMINI_API')
+
 app = Flask(__name__, template_folder='static')
+
+inquerier = TfidfVectorizer()
+original_statements = open("./data.txt").readlines()
+proccessed_statements = [preprocess(info) for info in original_statements]
+X = inquerier.fit_transform(proccessed_statements)
+
 
 @app.route("/generate", methods=['POST'])
 def generate():
@@ -72,7 +79,9 @@ def index():
 @app.route("/message", methods=['POST'])
 def message():
     data = request.get_json()
-    return generate_response(data['message'])
+    inquery = inquerier.transform([preprocess(data['message'])])
+    similarity = cosine_similarity(inquery, X)[0]
+    return original_statements[max(range(len(similarity)), key=lambda i: similarity[i])]
 
 if __name__ == "__main__":
     app.run(debug=True)

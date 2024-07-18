@@ -1,12 +1,12 @@
 render_ratio_for('title', 60, { screen_width: 1600, screen_height: 793 });
-render_ratio_for('inq', 60, { screen_width: 1600, screen_height: 793 });
+render_ratio_for('inq', 50, { screen_width: 1600, screen_height: 793 });
 render_ratio_for('btn', 60, { screen_width: 1600, screen_height: 793 });
 render_ratio_for('select', 60, { screen_width: 1600, screen_height: 793 });
 render_ratio_for('input', 60, { screen_width: 1600, screen_height: 793 });
 document.getElementById('input').style.height = document.getElementById('btn').clientHeight + 'px';
 render_ratio_for('textarea', 131.67, { screen_width: 1600, screen_height: 793 });
 
-
+document.getElementById('messages').style.maxHeight = document.getElementById('messages').clientHeight + 'px';
 
 function render_ratio_for(id, height, { screen_width, screen_height }) {
     attrs = ['margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'font-size'];
@@ -54,12 +54,12 @@ function send_message() {
             </div>
             `
             let timeout = 1;
-            data.split('').forEach(character => {
-                console.log(character)
+
+            for (let i = 0; i < data.length; i++) {
                 setTimeout(() => {
-                    document.getElementById(id).innerHTML += character;
-                }, (timeout++) * 20)
-            })
+                    document.getElementById(id).innerHTML += data.charAt(i);
+                }, (timeout++) * 15)
+            }
 
         })
         .catch(error => console.error('Error:', error));

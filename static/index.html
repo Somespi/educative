@@ -13,42 +13,44 @@
 </head>
 <body>
     <div class="flex flex-row w-full h-screen">
-        <div class="w-1/4 m-3" id="wrap"> 
+        <div class="w-1/4" id="wrap"> 
 
-            <div class="bg-neutral rounded-2xl w-full h-full flex flex-col "  id="Inquiry">
+            <div class="bg-base-200  text-base-content rounded-r-3xl  w-full h-full flex flex-col "  id="Inquiry">
                 <div >
-                    <h1 class="sansita-swashed p-3 text-2xl font-bold text-base-100" id="inq">
+                    <h1 class="sansita-swashed  p-3 text-xl font-bol" id="inq">
                         Inquiry
                     </h1>
                 </div>
                 <div class="flex-1 flex flex-col mt-4">
                     <div class="flex-1" id="messages-container">
-                            <div class="flex flex-col" id="messages">
+                            <div class="flex flex-col " id="messages">
                             </div>
                       </div>
                     <div>
                         <form id="form">
                             <input id="prompt"  
                             type="text" placeholder="Inquiry about..." 
-                            class="input bg-accent text-base-100 input-accent text-xs w-full px-3 pb-3 rounded-t-none rounded-b-2xl" >
+                            class="input bg-base-300 text-base-content text-xs w-full rounded-none " >
                         </form>
                     </div>
                 </div>
                 <div></div>
             </div>
         </div>
-        <div class="flex-1 bg-neutral rounded-2xl m-3 ">
+        <div class="divider"></div>
+
+        <div class="flex-1 ">
             <div class="w-full h-full flex justify-center content-center" >
-                <div class="w-full h-full text-base-100" id="main_page">
+                <div class="w-full h-full " id="main_page">
 
                     <div class="w-full h-full flex flex-col px-24 justify-center content-center text-center">
     
-                        <h1 class="sansita-swashed text-5xl mb-36 font-bold text-base-100" id="title">
+                        <h1 class="sansita-swashed text-5xl mb-36 font-bold text-primary" id="title">
                             Educative
                         </h1>
                         <div class="flex w-full flex-row justify-center self-center mb-5 space-x-9">
-                            <input id="input"  type="text" name="subject" placeholder="Subject" class="input bg-accent text-base-100 input-accent flex-1" >
-                            <select id="select"  class="select select-accent bg-accent text-base-100 flex-1">
+                            <input id="input"  type="text" name="subject" placeholder="Subject" class="input text-base-100 input-accent flex-1" >
+                            <select id="select"  class="select select-accent flex-1">
                                 <option disabled selected>Educational Level</option>
                                 <option>Primary</option>
                                 <option>Secondary</option>
@@ -57,8 +59,9 @@
                             
                             </select>
                         </div>
-                        <textarea type="text" id="textarea" name="content" placeholder="Other Notes" class="textarea bg-accent text-base-100 textarea-accent textarea-lg"  id=""></textarea>
-                        <button id="btn"  class="btn btn-accent  btn-md mt-10 w-1/2 self-center" onclick="send_request()">
+                        <textarea type="text" id="textarea" name="content" placeholder="Other Notes" class="textarea text-base-100 textarea-accent textarea-lg"  id=""></textarea>
+                        
+                        <button id="btn"  class="btn bg-[#7fbc6b] hover:bg-[#669e53] btn-md mt-10 w-1/2 self-center" onclick="send_request()">
                             <svg height="24" width="24" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle">
                                 <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z"></path>
                             </svg>

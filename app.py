@@ -28,6 +28,8 @@ def gemini_prompt(prompt):
             }
         ]
     }, headers={'Content-Type': 'application/json'})
+    if feedback.status_code != 200:
+        print(feedback.json())
     return feedback.json()['candidates'][0]['content']['parts'][0]['text']
 
 def generate_response(message):

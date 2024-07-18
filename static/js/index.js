@@ -1,6 +1,5 @@
 render_ratio_for('title', 60, { screen_width: 1600, screen_height: 793 });
-render_ratio_for('inq', 70, { screen_width: (1600 / 0.8), screen_height: (793 / 0.8) });
-
+render_ratio_for('inq', 60, { screen_width: 1600, screen_height: 793 });
 render_ratio_for('btn', 60, { screen_width: 1600, screen_height: 793 });
 render_ratio_for('select', 60, { screen_width: 1600, screen_height: 793 });
 render_ratio_for('input', 60, { screen_width: 1600, screen_height: 793 });
@@ -35,7 +34,7 @@ function send_message() {
     document.getElementById("messages").innerHTML +=
         `<div class="bg-[rgba(0,0,0,0.05)] message-user message">
         <strong class="text-white text-xs ml-2">user</strong>
-        <p class="text-base-100 ml-3 text-xs pb-2">${prompt}</p>
+        <p class="text-base-content ml-3 text-xs pb-2">${prompt}</p>
     </div>
     `
     fetch("/message", {
@@ -51,7 +50,7 @@ function send_message() {
             document.getElementById("messages").innerHTML +=
                 `<div class="message message-bot">
                 <strong class="text-white text-xs ml-2">bot</strong>
-                <p class="text-base-100 ml-3 text-xs pb-2" id="${id}" ></p>
+                <p class="text-base-content ml-3 text-xs pb-2" id="${id}" ></p>
             </div>
             `
             let timeout = 1;
@@ -85,7 +84,6 @@ function send_request() {
             var converter = new showdown.Converter();
 
             converter.setFlavor('github');
-            console.log(res)
             html = converter.makeHtml(data);
             console.log(html)
             const parser = new DOMParser();
@@ -114,7 +112,10 @@ function send_request() {
             document.getElementById("main_page").innerHTML = finalHtml;
         })
         .then(data => console.log(data))
-        .catch(error => alert('Error:', error));
+        .catch(error => {
+            alert('Error:', error)
+            console.log(error)
+});
 
 
 

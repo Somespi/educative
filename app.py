@@ -3,12 +3,16 @@ from requests import post
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from string import punctuation
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 inquerier = TfidfVectorizer()
 infos = open("./data.txt").readlines()
 X = inquerier.fit_transform(infos)
 
-api_key = "AIzaSyAt5HSN9sVykg_8E_UgXh7O8pwpxvw82zQ"
+api_key = os.getenv('GEMINI_API')
 
 
 def gemini_prompt(prompt):

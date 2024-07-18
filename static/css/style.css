@@ -1601,3 +1601,23 @@ html {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
 }
+
+.message-bot {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.message-user {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.message p {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  padding-bottom: 0.5rem;
+  margin-left: 0.7rem;
+}
+
+.message strong {
+  margin-left: 0.5rem;
+  color: white;
+}

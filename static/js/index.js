@@ -33,7 +33,7 @@ function send_message() {
     let prompt = document.getElementById('prompt').value;
     if (!prompt) return;
     document.getElementById("messages").innerHTML +=
-        `<div class="bg-[rgba(0,0,0,0.05)]">
+        `<div class="bg-[rgba(0,0,0,0.05)] message-user message">
         <strong class="text-white text-xs ml-2">user</strong>
         <p class="text-base-100 ml-3 text-xs pb-2">${prompt}</p>
     </div>
@@ -49,7 +49,7 @@ function send_message() {
         .then(data => {
             id = Math.random().toString(36).substring(7);
             document.getElementById("messages").innerHTML +=
-                `<div class="bg-[rgba(0,0,0,0.1)]">
+                `<div class="message message-bot">
                 <strong class="text-white text-xs ml-2">bot</strong>
                 <p class="text-base-100 ml-3 text-xs pb-2" id="${id}" ></p>
             </div>

@@ -114,7 +114,7 @@ function send_request() {
             document.getElementById("main_page").innerHTML = finalHtml;
         })
         .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+        .catch(error => alert('Error:', error));
 
 
 
